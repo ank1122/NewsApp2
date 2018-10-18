@@ -9,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +27,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Check if the existing view is being reused, otherwise inflate the view
+
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
@@ -42,8 +43,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         String time1 = currentNews.getmnewsTime();
 
-
-        // Find the TextView with view ID location
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.title_news);
         primaryLocationView.setText(originalLocation);
 
@@ -59,7 +58,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
 
         dateView.setText(time1);
-
 
         return listItemView;
 

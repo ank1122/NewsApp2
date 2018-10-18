@@ -9,7 +9,6 @@ public class News {
     private String mSection;
     // private String mImage;
 
-
     public News(String newstitle, String time, String url, String author, String section) {
 
         mnewsTitle = newstitle;

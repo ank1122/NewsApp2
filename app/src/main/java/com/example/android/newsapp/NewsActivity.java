@@ -40,13 +40,10 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find a reference to the {@link ListView} in the layout
         ListView newsListView = (ListView) findViewById(R.id.list);
 
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
-        // Set the adapter on the {@link ListView}
-        // so the list can be populated in the user interface
         newsListView.setAdapter(mAdapter);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
@@ -58,10 +55,8 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current earthquake that was clicked on
-                News currentNews = mAdapter.getItem(position);
 
-                // Convert the String URL into a URI object (to pass into the Intent constructor)
+                News currentNews = mAdapter.getItem(position);
                 Uri newsUri = Uri.parse(currentNews.getUrl());
 
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
@@ -96,7 +91,6 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
         String time = sharedPrefs.getString(
                 getString(R.string.settings_news_key),
                 getString(R.string.settings_news_default));
@@ -106,15 +100,12 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
                 getString(R.string.settings_order_by_default)
         );
 
-        // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(REQUEST_URL);
-
-        // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value. For example, the `format=geojson`
-        uriBuilder.appendQueryParameter("format", "geojson");
-        uriBuilder.appendQueryParameter("limit", "10");
+        // uriBuilder.appendQueryParameter("format", "geojson");
+        //uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("time", time);
         uriBuilder.appendQueryParameter("orderby", orderBy);
 
@@ -141,7 +132,6 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private class NewsAsyncTask extends AsyncTask<String, Void, List<News>> {
         protected List<News> doInBackground(String... urls) {
-            // Don't perform the request if there are no URLs, or the first URL is null
             if (urls.length < 1 || urls[0] == null) {
                 return null;
             }
