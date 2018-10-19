@@ -103,11 +103,8 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
         Uri baseUri = Uri.parse(REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        // Append query parameter and its value. For example, the `format=geojson`
-        // uriBuilder.appendQueryParameter("format", "geojson");
-        //uriBuilder.appendQueryParameter("limit", "10");
-        uriBuilder.appendQueryParameter("pageSize",pageSize);
-        uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("page-size",pageSize);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
 
         return new NewsLoader(this, uriBuilder.toString());
     }
