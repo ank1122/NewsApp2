@@ -23,8 +23,8 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            Preference time = findPreference(getString(R.string.settings_news_key));
-            bindPreferenceSummaryToValue(time);
+            Preference pageSize = findPreference(getString(R.string.settings_news_key));
+            bindPreferenceSummaryToValue(pageSize);
 
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);

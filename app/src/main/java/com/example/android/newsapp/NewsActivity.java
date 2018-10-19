@@ -91,7 +91,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String time = sharedPrefs.getString(
+        String pageSize = sharedPrefs.getString(
                 getString(R.string.settings_news_key),
                 getString(R.string.settings_news_default));
 
@@ -106,7 +106,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
         // Append query parameter and its value. For example, the `format=geojson`
         // uriBuilder.appendQueryParameter("format", "geojson");
         //uriBuilder.appendQueryParameter("limit", "10");
-        uriBuilder.appendQueryParameter("time", time);
+        uriBuilder.appendQueryParameter("pageSize",pageSize);
         uriBuilder.appendQueryParameter("orderby", orderBy);
 
         return new NewsLoader(this, uriBuilder.toString());
